@@ -2,6 +2,5 @@ function suma(a, b) {
   return a + b;
 }
 
-console.log(sume())
-
+// Prueba webhook Jenkins - disparo automatico
 module.exports = { suma };
