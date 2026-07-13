@@ -65,13 +65,15 @@ pipeline {
   post {
     success {
       echo "✅ Pipeline completado correctamente para ${env.APP_NAME}"
+      mail to: 'arielm1208@gmail.com',
+           subject: "Build OK: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+           body: "Pipeline completado correctamente para ${env.APP_NAME}.\nConsola: ${env.BUILD_URL}"
     }
     failure {
       echo "❌ El pipeline falló. Revisa los logs de la etapa correspondiente."
-      // Reto Paso 8: descomenta tras configurar Email Extension + SMTP
-      // mail to: 'tu_correo@ejemplo.com',
-      //      subject: "Build fallido: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-      //      body: "Revisa la consola: ${env.BUILD_URL}"
+      mail to: 'arielm1208@gmail.com',
+           subject: "Build fallido: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+           body: "Revisa la consola: ${env.BUILD_URL}"
     }
     always {
       echo "Build #${env.BUILD_NUMBER} finalizado."
